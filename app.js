@@ -15,6 +15,7 @@ function rowToObject(row) {
   return {
     title: row.title,
     description: row.description,
+    id: row.id
   };
 }
 
@@ -72,7 +73,7 @@ app.delete('/blusolddb/:id', (request, response) => {
 
 
 app.get('/blusolddb/', (request, response) => {
-  const query = 'SELECT title, description FROM items WHERE published = 0';
+  const query = 'SELECT title, description,id FROM items';
   const params = [request.params];
   connection.query(query,params,(error, rows) => {
     response.send({
